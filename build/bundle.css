@@ -1,5 +1,21 @@
 body {
   color: black; }
 
+.flex-container {
+  display: flex;
+  flex-direction: column; }
+
+.item-block {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10rem 1rem; }
+
+.text-block {
+  flex: 0 1 20rem;
+  font-family: 'Hind', sans-serif;
+  font-size: 18px;
+  color: #5E7393;
+  margin: 1rem; }
+
 
 /*# sourceMappingURL=bundle.css.map*/
