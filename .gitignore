@@ -14,3 +14,6 @@ yarn.lock
 .vscode
 
 .idea
+
+#prevent upload raw code to public repository
+src
