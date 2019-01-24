@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=9;IE=10;IE=Edge,chrome=1"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="author" content="Alexei Zababurin"/>
-    <meta name="description" content="Wheel animation for Soren Johansen"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9;IE=10;IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="Alexei Zababurin">
+    <meta name="description" content="Wheel animation for Soren Johansen">
     <link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
-
+    <link href="css/index.css" rel="stylesheet">
 </head>
 <body>
 <h3>this page containe all animations</h3>
@@ -51,11 +51,26 @@
     <div class="item-block">
 
     </div>
-    </div>
-    <!--<script >-->
-        <!--document.addEventListener("DOMContentLoaded", function(event) {-->
-          <!--console.log("DOM fully loaded and parsed");-->
-        <!--});-->
-    <!--</script>-->
+</div>
+<script src="js/ScrollMagic.min.js"></script>
+<script src="js/index.js"></script>
+
+<script type="text/javascript">
+  const anim1config = {
+    path2Wheel: "assets/wheel1.svg",
+    placeID: "WHEEL1",
+    triggerID: "movable-arrow1",
+    duration: "WHEEL1",
+    circle: "opened",
+    arrowStatus: {
+      "0": "opened",
+      "1": "active",
+      "2": "passive",
+    }
+  };
+  InitAnimation(anim1config);
+
+</script>
+
 </body>
 </html>

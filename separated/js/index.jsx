@@ -1,62 +1,5 @@
-import ScrollMagic from "ScrollMagic";
-import "../styles/index.scss";
-
 // init controller
 const controller = new ScrollMagic.Controller();
-
-const animCircle = {
-  path2Wheel: "assets/wheel1.svg",
-  placeID: "CIRCLE",
-  triggerID: "STARTTRIGER1",
-  duration: "CIRCLE", //number of pixels when animation play. It is got the height of the element with this Id
-  circle: "active",
-  arrowStatus: {
-    "0": "passive",
-    "1": "passive",
-    "2": "passive",
-  }
-};
-const anim0config = {
-  path2Wheel: "assets/wheel1.svg",
-  placeID: "WHEEL0",
-  triggerID: "movable-arrow0",
-  duration: "WHEEL0",
-  circle: "opened",
-  arrowStatus: {
-    "0": "active",
-    "1": "passive",
-    "2": "passive",
-  }
-};
-const anim1config = {
-  path2Wheel: "assets/wheel1.svg",
-  placeID: "WHEEL1",
-  triggerID: "movable-arrow1",
-  duration: "WHEEL1",
-  circle: "opened",
-  arrowStatus: {
-    "0": "opened",
-    "1": "active",
-    "2": "passive",
-  }
-};
-const anim2config = {
-  path2Wheel: "assets/wheel1.svg",
-  placeID: "WHEEL2",
-  triggerID: "movable-arrow2",
-  duration: "WHEEL2",
-  circle: "opened",
-  arrowStatus: {
-    "0": "opened",
-    "1": "opened",
-    "2": "active",
-  }
-};
-InitAnimation(animCircle);
-InitAnimation(anim0config);
-InitAnimation(anim1config);
-InitAnimation(anim2config);
-
 
 function InitAnimation({path2Wheel, placeID, duration, triggerID, circle, arrowStatus}) {
   fetch(path2Wheel)
@@ -84,16 +27,9 @@ function InitAnimation({path2Wheel, placeID, duration, triggerID, circle, arrowS
     const targetArrow2 = [...IdEl.getElementsByClassName("movable-arrow2")];//get element in SVG
 
     const progressCallback = [targetArrow0, targetArrow1, targetArrow2].map(el => event => {
-        // console.log("progressCallback", el, event);
-        // if (event.state === 'BEFORE')
-        //   el.forEach(el => el.setAttribute('opacity', 0))
-        // else
-          el.forEach(el => {
-            // if (el.getAttribute("opacity") == "0") {
-            //   el.setAttribute('opacity', 1);
-            // }
-            el.setAttribute('transform', `rotate(${120 * event.progress}, 270, 270)`);
-          });
+        el.forEach(el => {
+          el.setAttribute('transform', `rotate(${120 * event.progress}, 270, 270)`);
+        });
       }
     );
 
@@ -135,9 +71,3 @@ function InitAnimation({path2Wheel, placeID, duration, triggerID, circle, arrowS
     }
   }
 }
-
-function testExport() {
-  console.log("testExport");
-}
-
-module.exports = testExport;

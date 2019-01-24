@@ -1,8 +1,12 @@
-$body-color: black;
 
 body {
-  color: $body-color;
-  padding-top: 50%;
+  font-family: 'Hind', sans-serif;
+  font-size: 18px;
+  color: #5E7393;
+}
+
+.banner {
+  padding-bottom: 50%;
 }
 
 .flex-container {
@@ -18,9 +22,6 @@ body {
 
 .text-block {
   flex: 0 1 20rem;
-  font-family: 'Hind', sans-serif;
-  font-size: 18px;
-  color: #5E7393;
   margin: 1rem;
 }
 
