@@ -135,9 +135,3 @@ function InitAnimation({path2Wheel, placeID, duration, triggerID, circle, arrowS
     }
   }
 }
-
-function testExport() {
-  console.log("testExport");
-}
-
-module.exports = testExport;
