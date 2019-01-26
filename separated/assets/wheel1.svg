@@ -52,6 +52,11 @@
   <g id="Page-2">
     <g id="Homepage">
       <g id="content">
+        <g id="TRIGGERS">
+          <line id="topTrigger" class="topTrigger" x1="0" y1="170" x2="270" y2="170" strok-width="0px" stroke="rgba(255, 255, 255, 0)"/>
+          <line id="centralTrigger" class="centralTrigger" x1="0" y1="270" x2="270" y2="270" strok-width="0px" stroke="rgba(255, 255, 255, 0)"/>
+          <line id="bottomTrigger" class="bottomTrigger" x1="0" y1="445" x2="270" y2="445" strok-width="0px" stroke="rgba(255, 255, 255, 0)"/>
+        </g>
         <g id="wheel">
           <g id="section_1" data-name="section#1">
             <g id="wheel-2" data-name="wheel">
@@ -64,7 +69,7 @@
               <g id="arrows">
 
                   <g id="arrow_0">
-                    <path id="path-8-2-grey" data-name="path-8" d="M267.1,14.9l45.3,60.3-45.2,60.2V113.7c-87,7.1-151.8,83.5-144.6,170.6a158.7,158.7,0,0,0,12.2,49.2l-48.6-5.9-21,49.2A238.5,238.5,0,0,1,41,284.3c-7.2-132.1,94.1-245,226.1-252.1Z" transform="rotate(120, 270, 270) translate(-9.6 -2)" fill="lightgrey"/>
+                    <path id="path-8-2-grey" data-name="path-8" d="M267.1,14.9l45.3,60.3-45.2,60.2V113.7c-87,7.1-151.8,83.5-144.6,170.6a158.7,158.7,0,0,0,12.2,49.2l-48.6-5.9-21,49.2A238.5,238.5,0,0,1,41,284.3c-7.2-132.1,94.1-245,226.1-252.1Z" transform="rotate(120, 270, 270) translate(-9.6 -2)" fill="#c2c2c2"/>
                     <g mask="url(#mask-2)">
                       <g id="Fill-4" class="movable-arrow movable-arrow0" transform="rotate(120, 270, 270)">
                         <path id="path-8-2" data-name="path-8" d="M267.1,14.9l45.3,60.3-45.2,60.2V113.7c-87,7.1-151.8,83.5-144.6,170.6a158.7,158.7,0,0,0,12.2,49.2l-48.6-5.9-21,49.2A238.5,238.5,0,0,1,41,284.3c-7.2-132.1,94.1-245,226.1-252.1Z" transform="translate(-9.6 -2)" fill="url(#linear-gradient-3)"/>
@@ -75,7 +80,7 @@
                   </g>
 
                   <g id="arrow_1">
-                    <path id="path-4-2-grey" data-name="path-4" d="M328.4,75.2,296.3,32.4a239,239,0,0,1,92.1,25.4c118,59.8,165.1,204,105.3,321.9l14.9,8.7-74.8,9-29.5-69.3L423.1,339c37.3-79,3.5-173.3-75.4-210.6A156.6,156.6,0,0,0,299,114.3Z" transform="rotate(120, 270, 270) translate(-9.6 -2)" fill="lightgrey"/>
+                    <path id="path-4-2-grey" data-name="path-4" d="M328.4,75.2,296.3,32.4a239,239,0,0,1,92.1,25.4c118,59.8,165.1,204,105.3,321.9l14.9,8.7-74.8,9-29.5-69.3L423.1,339c37.3-79,3.5-173.3-75.4-210.6A156.6,156.6,0,0,0,299,114.3Z" transform="rotate(120, 270, 270) translate(-9.6 -2)" fill="#c2c2c2"/>
                     <g mask="url(#mask)">
                       <g id="arrow_1" class="movable-arrow movable-arrow1" transform="rotate(120, 270, 270)">
                         <path id="path-4-2" data-name="path-4" d="M328.4,75.2,296.3,32.4a239,239,0,0,1,92.1,25.4c118,59.8,165.1,204,105.3,321.9l14.9,8.7-74.8,9-29.5-69.3L423.1,339c37.3-79,3.5-173.3-75.4-210.6A156.6,156.6,0,0,0,299,114.3Z" transform="translate(-9.6 -2)" fill="url(#linear-gradient)"/>
@@ -86,7 +91,7 @@
                   </g>
 
                 <g id="arrow_2" data-name="arrow 1">
-                  <path id="mask--gray" class="mask-2" d="M267.1,14.9l45.3,60.3-45.2,60.2V113.7c-87,7.1-151.8,83.5-144.6,170.6a158.7,158.7,0,0,0,12.2,49.2l-48.6-5.9-21,49.2A238.5,238.5,0,0,1,41,284.3c-7.2-132.1,94.1-245,226.1-252.1Z" transform="translate(-9.6 -2)" fill="lightgray" stroke="white" stroke-width="4px" opacity="1" />
+                  <path id="mask--gray" class="mask-2" d="M267.1,14.9l45.3,60.3-45.2,60.2V113.7c-87,7.1-151.8,83.5-144.6,170.6a158.7,158.7,0,0,0,12.2,49.2l-48.6-5.9-21,49.2A238.5,238.5,0,0,1,41,284.3c-7.2-132.1,94.1-245,226.1-252.1Z" transform="translate(-9.6 -1.5)" fill="#c2c2c2" stroke="white" stroke-width="0px" opacity="1" />
                   <g mask="url(#mask-3)">
                     <g id="Mask-4" class="movable-arrow movable-arrow2" transform="rotate(120, 270, 270)">
                       <path id="path-12-2" data-name="path-12" d="M64.5,410.8l29.6-69.4,74.8,9.1-18.8,10.9a158.1,158.1,0,0,0,220,40,156.4,156.4,0,0,0,36.5-35.2l19.2,45.1,53.1-6.4a240.1,240.1,0,0,1-68,67.1c-110.8,72.2-259.2,40.9-331.4-69.9Z" transform="translate(-9.6 -2)" fill="url(#linear-gradient-5)"/>
@@ -101,19 +106,19 @@
                 </g>
               </g>
 
-              <g id="middle" class="middle-group">
+              <g id="middle">
                 <circle id="depth" cx="270.4" cy="270" r="120" fill-opacity="0.5" fill="url(#linear-gradient-7)"/>
-                <g id="Group">
+                <g id="Group" class="middle-group">
                   <g id="base-2" data-name="base">
                     <g filter="url(#filter-17)">
                       <circle id="path-16" cx="270.4" cy="270" r="90"/>
                     </g>
-                    <circle id="path-16-2" data-name="path-16" cx="270.4" cy="270" r="90" fill="#3283cf"/>
+                    <circle id="middle-circle" data-name="path-16" cx="270.4" cy="270" r="90" fill="#3283cf"/>
                   </g>
                   <g id="Måling-og-optimering" style="isolation: isolate">
-                    <text transform="translate(221.1 258)" font-size="22" fill="#fff" font-family="Arial-BoldMT, Arial" font-weight="700" style="isolation: isolate">Måling og</text>
-                    <text transform="translate(323.7 258)" font-size="22" fill="#fff" font-family="Arial-BoldMT, Arial" font-weight="700"> </text>
-                    <text transform="translate(215.4 293)" font-size="22" fill="#fff" font-family="Arial-BoldMT, Arial" font-weight="700" style="isolation: isolate">optimering</text>
+                    <text transform="translate(221.1 258)" font-size="22" fill="#fff" font-family="Arial-BoldMT, Arial" font-weight="400" style="isolation: isolate">Måling og</text>
+                    <text transform="translate(323.7 258)" font-size="22" fill="#fff" font-family="Arial-BoldMT, Arial" font-weight="400"> </text>
+                    <text transform="translate(215.4 293)" font-size="22" fill="#fff" font-family="Arial-BoldMT, Arial" font-weight="400" style="isolation: isolate">optimering</text>
                   </g>
                 </g>
               </g>

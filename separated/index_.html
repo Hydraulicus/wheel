@@ -11,30 +11,29 @@
     <link href="css/index.css" rel="stylesheet">
 </head>
 <body>
-<h3>this page containe all animations</h3>
-<h1 class="banner" >Please scroll down</h1>
+<h1 class="banner">Please scroll down</h1>
 <div class="flex-container">
     <div class="item-block">
         <div id="CIRCLE" class="wheel-svg-block"></div>
         <div class="text-block">
-            <h3 id="STARTTRIGER1">Måling og optimering</h3>
-            <span id="DURATION_CIRCLE"> Du skal måle på din markedsføring, før du ved, hvad der virker. Med vores opkaldssporing kan du se, hvor hvert eneste opkald kommer fra. Og vi optimerer din markedsføring ud fra, hvad der bedst kan betale sig for dig. Det giver dig mest værdi for pengene. </span>
+            <h3>Måling og optimering</h3>
+            <span> Du skal måle på din markedsføring, før du ved, hvad der virker. Med vores opkaldssporing kan du se, hvor hvert eneste opkald kommer fra. Og vi optimerer din markedsføring ud fra, hvad der bedst kan betale sig for dig. Det giver dig mest værdi for pengene. </span>
             <span>Se, hvordan det virker her </span>
         </div>
     </div>
     <div class="item-block">
         <div id="WHEEL0" class="wheel-svg-block"></div>
         <div class="text-block">
-            <h3 id="movable-arrow0">Få flere kunder</h3>
-            <span id="DURATION_ARROW0">De besøgende på din hjemmeside skal være relevante for dig. Ellers er det lige meget. Vi sørger for at tiltrække de rigtige kundeemner, når de er klar til at købe – og vi sikrer, at du får flest mulige kunder ud af dine besøgende. Så arbejder din hjemmeside for dig 24/7.</span>
+            <h3>Få flere kunder</h3>
+            <span>De besøgende på din hjemmeside skal være relevante for dig. Ellers er det lige meget. Vi sørger for at tiltrække de rigtige kundeemner, når de er klar til at købe – og vi sikrer, at du får flest mulige kunder ud af dine besøgende. Så arbejder din hjemmeside for dig 24/7.</span>
             <span>Se, hvordan det virker her </span>
         </div>
     </div>
     <div class="item-block">
         <div id="WHEEL1" class="wheel-svg-block"></div>
         <div class="text-block">
-            <h3 id="movable-arrow1">.. der kommer igen</h3>
-            <span id="DURATION_ARROW1">Glade, tilfredse kunder vender tilbage. Det ved du godt. Nu gør vi det nemt for dig at give dine kunder en fantastisk kundeoplevelse. Så du får flere stamkunder, som køber af dig igen og igen. Dét er nemlig en god forretning.</span>
+            <h3>.. der kommer igen</h3>
+            <span>Glade, tilfredse kunder vender tilbage. Det ved du godt. Nu gør vi det nemt for dig at give dine kunder en fantastisk kundeoplevelse. Så du får flere stamkunder, som køber af dig igen og igen. Dét er nemlig en god forretning.</span>
             <span>Se, hvordan det virker her </span>
         </div>
 
@@ -42,26 +41,24 @@
     <div class="item-block">
         <div id="WHEEL2" class="wheel-svg-block"></div>
         <div class="text-block">
-            <h3 id="movable-arrow2">.. og anbefaler dig til andre</h3>
-            <span id="DURATION_ARROW2">Glade kunder anbefaler dig til andre. Med Magurus værktøj får du automatisk feedback fra dine kunder. Du får et enkelt system, hvor du let kan følge op på utilfredse kunder – og få flere anbefalinger fra tilfredse kunder.</span>
+            <h3>.. og anbefaler dig til andre</h3>
+            <span>Glade kunder anbefaler dig til andre. Med Magurus værktøj får du automatisk feedback fra dine kunder. Du får et enkelt system, hvor du let kan følge op på utilfredse kunder – og få flere anbefalinger fra tilfredse kunder.</span>
             <span>Se, hvordan det virker her </span>
         </div>
 
     </div>
     <div class="item-block">
-
     </div>
 </div>
 <script src="js/ScrollMagic.min.js"></script>
 <script src="js/index.js"></script>
 
 <script type="text/javascript">
-
   const animCircle = {
     path2Wheel: "assets/wheel1.svg",
     placeID: "CIRCLE", //div where SVG wheel should be placed
-    triggerID: "STARTTRIGER1", //ID which actuates animation. It happens once block appear on screen
-    duration: "CIRCLE", //number of pixels when animation play. It is got the height of the element with this Id
+    trigger: "centralTrigger", //ID which actuates animation. It happens once id appear on screen
+    duration: 0.5, //0.5 - center of view area
     circle: "active",
     arrowStatus: {
       "0": "passive",

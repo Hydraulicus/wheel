@@ -12,6 +12,7 @@ function InitAnimation(_ref) {
       placeID = _ref.placeID,
       duration = _ref.duration,
       triggerID = _ref.triggerID,
+      trigger = _ref.trigger,
       circle = _ref.circle,
       arrowStatus = _ref.arrowStatus;
 
@@ -19,21 +20,27 @@ function InitAnimation(_ref) {
     return resp.text();
   }).then(function (SVG) {
     document.getElementById(placeID).insertAdjacentHTML("afterbegin", SVG);
-    performAnimation({ placeID: placeID, triggerID: triggerID, duration: duration, circle: circle, arrowStatus: arrowStatus });
+    performAnimation({ placeID: placeID, triggerID: triggerID, duration: duration, trigger: trigger, circle: circle, arrowStatus: arrowStatus });
   });
 
   function performAnimation(_ref2) {
     var placeID = _ref2.placeID,
         triggerID = _ref2.triggerID,
+        trigger = _ref2.trigger,
         duration = _ref2.duration,
         circle = _ref2.circle,
         arrowStatus = _ref2.arrowStatus;
 
-    var animDuration = function animDuration(item) {
-      return document.getElementById(item).scrollHeight || document.getElementById(item).offsetHeight;
+
+    var animDuration = function animDuration(duration) {
+      return duration * window.innerHeight;
     };
+    // const animDuration = item => document.getElementById(item).scrollHeight || document.getElementById(item).offsetHeight ;
+    // console.log("the orientation of the device is now " + screen.orientation.angle, " window zise = ", window.innerHeight, " x ", window.innerWidth);
+
     var IdEl = document.getElementById(placeID);
     var targetMiddle = [].concat(_toConsumableArray(IdEl.getElementsByClassName("middle-group")));
+    var targetMiddleCircle = document.getElementById("middle-circle");
     targetMiddle[0].style.opacity = circle === "active" ? 0 : 1;
 
     /* hide not active arrows */
@@ -42,13 +49,19 @@ function InitAnimation(_ref) {
       el.setAttribute('opacity', opacityState);
     });
 
+    var passedTrigger = [].concat(_toConsumableArray(IdEl.getElementsByClassName(trigger)))[0]; //get element in SVG
+
     var targetArrow0 = [].concat(_toConsumableArray(IdEl.getElementsByClassName("movable-arrow0"))); //get element in SVG
     var targetArrow1 = [].concat(_toConsumableArray(IdEl.getElementsByClassName("movable-arrow1"))); //get element in SVG
     var targetArrow2 = [].concat(_toConsumableArray(IdEl.getElementsByClassName("movable-arrow2"))); //get element in SVG
 
     var progressCallback = [targetArrow0, targetArrow1, targetArrow2].map(function (el) {
       return function (event) {
+        // console.log("progressCallback", el, event.target.triggerElement(), event.target.progress(), " of ", event.target.duration());
         el.forEach(function (el) {
+          if (el.getAttribute("opacity") == "0") {
+            el.setAttribute('opacity', 1);
+          }
           el.setAttribute('transform', "rotate(" + 120 * event.progress + ", 270, 270)");
         });
       };
@@ -56,37 +69,41 @@ function InitAnimation(_ref) {
 
     // build scenes
     if (circle === "active") {
+      targetMiddleCircle.setAttribute("r", 0);
       var sceneCircle = new ScrollMagic.Scene({
-        triggerElement: "#" + triggerID,
+        triggerElement: passedTrigger,
         duration: animDuration(duration), //or set 540 - size of wheel
-        triggerHook: 0.75
+        triggerHook: 1
       }).addTo(controller).on("progress", progress1Callback);
-    } else {
 
+      window.addEventListener("resize", function () {
+        sceneCircle.duration(animDuration(duration));
+        sceneCircle.update(true);
+      });
+    } else {
       var ArrowScenes = Object.entries(arrowStatus).map(function (_ref3) {
         var _ref4 = _slicedToArray(_ref3, 2),
             i = _ref4[0],
             val = _ref4[1];
 
         if (val !== "active") return;
-        return new ScrollMagic.Scene({
-          triggerElement: "#" + triggerID,
+        var arrowScene = new ScrollMagic.Scene({
+          triggerElement: passedTrigger,
           duration: animDuration(duration),
           triggerHook: 1
-        }).addTo(controller).on("enter", turnOnOpacity) // turn opacity = 1
-        .on("progress", progressCallback[i]); //rotate arrow
+        }).addTo(controller).on("progress", progressCallback[i]); //rotate arrow
+
+        window.addEventListener("resize", function () {
+          // console.log("the orientation of the device is now " + screen.orientation.angle, " window zise = ", window.innerHeight, " x ", window.innerWidth);
+          arrowScene.duration(animDuration(duration));
+          arrowScene.update(true);
+        });
       });
     }
 
     function progress1Callback(event) {
       targetMiddle[0].style.opacity = event.progress;
-    }
-
-    function turnOnOpacity(event) {
-      var elements = event.target.triggerElement().id;
-      [].concat(_toConsumableArray(IdEl.getElementsByClassName(elements))).forEach(function (el) {
-        el.setAttribute('opacity', 1);
-      });
+      targetMiddleCircle.setAttribute("r", 90 * event.progress);
     }
   }
 }
