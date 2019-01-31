@@ -34,7 +34,7 @@
         <div id="WHEEL1" class="wheel-svg-block"></div>
         <div class="text-block">
             <h3>.. der kommer igen</h3>
-            <span>Glade, tilfredse kunder vender tilbage. Det ved du godt. Nu gør vi det nemt for dig at give dine kunder en fantastisk kundeoplevelse. Så du får flere stamkunder, som køber af dig igen og igen. Dét er nemlig en god forretning.</span>
+            <span id="TEXT1">Glade, tilfredse kunder vender tilbage. Det ved du godt. Nu gør vi det nemt for dig at give dine kunder en fantastisk kundeoplevelse. Så du får flere stamkunder, som køber af dig igen og igen. Dét er nemlig en god forretning.</span>
             <span>Se, hvordan det virker her </span>
         </div>
 
@@ -58,8 +58,25 @@
   const animCircle = {
     path2Wheel: "assets/wheel1.svg",
     placeID: "CIRCLE", //div where SVG wheel should be placed
-    trigger: "centralTrigger", //ID which actuates animation. It happens once id appear on screen
-    duration: 0.5, //0.5 - center of view area
+
+    trigger: "Trigger50", //ID of element which actuates animation.
+    // this elements placed inside SVG-image and arranged definitely
+    // they define vertical marks of the percent proportion of image height
+    // it could take next values:
+    // "Trigger0", "Trigger10", "Trigger20" ... , "Trigger100",
+    // "topTrigger", "bottomTrigger", "centralTrigger"
+    // Animation start once this element appear on screen
+
+    durationSize: "CIRCLE", // define size of animation in pixels
+    // it could take values:
+    // number - , - size in pixels
+    // ID of element, - find this element and get a it height
+    // if "durationSize" is not specified - script gets current view area height
+
+    duration: 0.5, // define percent proportion durationSize
+    // it could take values 0...1
+    // 0.5 - center defined size
+
     circle: "active",
     arrowStatus: {
       "0": "passive",
@@ -70,8 +87,10 @@
   const anim0config = {
     path2Wheel: "assets/wheel1.svg",
     placeID: "WHEEL0",
-    trigger: "topTrigger",
-    duration: 0.5,
+    trigger: "bottomTrigger",
+
+    duration: 0.25,
+
     circle: "opened",
     arrowStatus: {
       "0": "active",
@@ -83,7 +102,10 @@
     path2Wheel: "assets/wheel1.svg",
     placeID: "WHEEL1",
     trigger: "bottomTrigger",
-    duration: 0.5,
+
+    durationSize: "WHEEL1",
+    duration: 1,
+
     circle: "opened",
     arrowStatus: {
       "0": "opened",
@@ -94,8 +116,8 @@
   const anim2config = {
     path2Wheel: "assets/wheel1.svg",
     placeID: "WHEEL2",
-    trigger: "topTrigger",
-    duration: 0.5,
+    trigger: "bottomTrigger",
+    duration: 0.25,
     circle: "opened",
     arrowStatus: {
       "0": "opened",

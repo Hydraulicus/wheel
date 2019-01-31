@@ -1,18 +1,32 @@
 // init controller
 const controller = new ScrollMagic.Controller();
 
-function InitAnimation({path2Wheel, placeID, duration, triggerID, trigger, circle, arrowStatus}) {
+function InitAnimation({path2Wheel, placeID, duration, durationSize, triggerID, trigger, circle, arrowStatus}) {
   fetch(path2Wheel)
     .then(resp => resp.text())
     .then(SVG => {
         document.getElementById(placeID).insertAdjacentHTML("afterbegin", SVG);
-        performAnimation({placeID, triggerID, duration, trigger, circle, arrowStatus});
+        performAnimation({placeID, triggerID, duration, durationSize, trigger, circle, arrowStatus});
       }
     );
 
-  function performAnimation({placeID, triggerID, trigger, duration, circle, arrowStatus}) {
+  function performAnimation({placeID, triggerID, trigger, duration, durationSize, circle, arrowStatus}) {
 
-    const animDuration = (duration) => duration * window.innerHeight;
+    let animSize;
+    switch (typeof(durationSize)) {
+
+      case "number": { animSize = durationSize; }
+      break;
+      case "string": {
+        animSize = document.getElementById(durationSize).scrollHeight || document.getElementById(durationSize).offsetHeight;
+        // console.log("window.devicePixelRatio=", window.devicePixelRatio);
+      }
+      break;
+      default: { animSize = window.innerHeight; }
+    }
+
+    const animDuration = (duration) => duration * animSize;
+    // console.log(" animDuration= ", animDuration(duration), "animSize = ", animSize, "durationSize =", durationSize, typeof(durationSize), document.getElementById(durationSize) );
     // const animDuration = item => document.getElementById(item).scrollHeight || document.getElementById(item).offsetHeight ;
     // console.log("the orientation of the device is now " + screen.orientation.angle, " window zise = ", window.innerHeight, " x ", window.innerWidth);
 

@@ -2,6 +2,8 @@
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 // init controller
@@ -11,6 +13,7 @@ function InitAnimation(_ref) {
   var path2Wheel = _ref.path2Wheel,
       placeID = _ref.placeID,
       duration = _ref.duration,
+      durationSize = _ref.durationSize,
       triggerID = _ref.triggerID,
       trigger = _ref.trigger,
       circle = _ref.circle,
@@ -20,7 +23,7 @@ function InitAnimation(_ref) {
     return resp.text();
   }).then(function (SVG) {
     document.getElementById(placeID).insertAdjacentHTML("afterbegin", SVG);
-    performAnimation({ placeID: placeID, triggerID: triggerID, duration: duration, trigger: trigger, circle: circle, arrowStatus: arrowStatus });
+    performAnimation({ placeID: placeID, triggerID: triggerID, duration: duration, durationSize: durationSize, trigger: trigger, circle: circle, arrowStatus: arrowStatus });
   });
 
   function performAnimation(_ref2) {
@@ -28,13 +31,35 @@ function InitAnimation(_ref) {
         triggerID = _ref2.triggerID,
         trigger = _ref2.trigger,
         duration = _ref2.duration,
+        durationSize = _ref2.durationSize,
         circle = _ref2.circle,
         arrowStatus = _ref2.arrowStatus;
 
 
+    var animSize = void 0;
+    switch (typeof durationSize === "undefined" ? "undefined" : _typeof(durationSize)) {
+
+      case "number":
+        {
+          animSize = durationSize;
+        }
+        break;
+      case "string":
+        {
+          animSize = document.getElementById(durationSize).scrollHeight || document.getElementById(durationSize).offsetHeight;
+          // console.log("window.devicePixelRatio=", window.devicePixelRatio);
+        }
+        break;
+      default:
+        {
+          animSize = window.innerHeight;
+        }
+    }
+
     var animDuration = function animDuration(duration) {
-      return duration * window.innerHeight;
+      return duration * animSize;
     };
+    // console.log(" animDuration= ", animDuration(duration), "animSize = ", animSize, "durationSize =", durationSize, typeof(durationSize), document.getElementById(durationSize) );
     // const animDuration = item => document.getElementById(item).scrollHeight || document.getElementById(item).offsetHeight ;
     // console.log("the orientation of the device is now " + screen.orientation.angle, " window zise = ", window.innerHeight, " x ", window.innerWidth);
 
