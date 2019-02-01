@@ -1,27 +1,44 @@
 // init controller
 const controller = new ScrollMagic.Controller();
 
-function InitAnimation({path2Wheel, placeID, duration, durationSize, triggerID, trigger, circle, arrowStatus}) {
+function InitAnimation({path2Wheel, placeID, durationSize, triggerID, circle, arrowStatus, responsivness}) {
   fetch(path2Wheel)
     .then(resp => resp.text())
     .then(SVG => {
         document.getElementById(placeID).insertAdjacentHTML("afterbegin", SVG);
-        performAnimation({placeID, triggerID, duration, durationSize, trigger, circle, arrowStatus});
+        performAnimation({placeID, triggerID, durationSize, circle, arrowStatus, responsivness});
       }
     );
 
-  function performAnimation({placeID, triggerID, trigger, duration, durationSize, circle, arrowStatus}) {
+  function performAnimation({placeID, triggerID, durationSize, circle, arrowStatus, responsivness}) {
+
+    /* get options set according to current width */
+    const relevantOptions = (responsivness) => {
+      const innerWidth = window.innerWidth;
+
+      for ( let i = responsivness.length-1; i >= 0; i -= 1 )
+      {
+        // console.log( innerWidth, i, " responsivness = ",  responsivness[i].width, responsivness[i]);
+        if ( innerWidth > responsivness[i].width ) {
+          return responsivness[i];
+        }
+      }
+      return responsivness[0];
+    };
+
+    // console.log("relevantOptions = ", relevantOptions(responsivness));
+    const { trigger, duration } =  relevantOptions(responsivness);
 
     let animSize;
     switch (typeof(durationSize)) {
 
       case "number": { animSize = durationSize; }
-      break;
+        break;
       case "string": {
         animSize = document.getElementById(durationSize).scrollHeight || document.getElementById(durationSize).offsetHeight;
         // console.log("window.devicePixelRatio=", window.devicePixelRatio);
       }
-      break;
+        break;
       default: { animSize = window.innerHeight; }
     }
 
@@ -48,11 +65,11 @@ function InitAnimation({path2Wheel, placeID, duration, durationSize, triggerID, 
     const targetArrow2 = [...IdEl.getElementsByClassName("movable-arrow2")];//get element in SVG
 
     const progressCallback = [targetArrow0, targetArrow1, targetArrow2].map(el => event => {
-      // console.log("progressCallback", el, event.target.triggerElement(), event.target.progress(), " of ", event.target.duration());
-      el.forEach(el => {
-        if (el.getAttribute("opacity") == "0") {
-          el.setAttribute('opacity', 1);
-        }
+        // console.log("progressCallback", el, event.target.triggerElement(), event.target.progress(), " of ", event.target.duration());
+        el.forEach(el => {
+          if (el.getAttribute("opacity") == "0") {
+            el.setAttribute('opacity', 1);
+          }
           el.setAttribute('transform', `rotate(${120 * event.progress}, 270, 270)`);
         });
       }
@@ -67,11 +84,18 @@ function InitAnimation({path2Wheel, placeID, duration, durationSize, triggerID, 
         triggerHook: 1
       })
         .addTo(controller)
-        .on("progress", progress1Callback)
+        .on("progress", progress1Callback);
 
-      window.addEventListener("resize", function() {
-        sceneCircle.duration( animDuration(duration) );
-        sceneCircle.update(true);
+      window.addEventListener("resize", function () {
+        const { trigger, duration } =  relevantOptions(responsivness);
+        // console.log("sceneCircle. the orientation of the device is now " + screen.orientation.angle, " window zise = ", window.innerWidth, " x ", window.innerHeight);
+        sceneCircle.duration(animDuration(duration));
+        sceneCircle.triggerElement([...IdEl.getElementsByClassName(trigger)][0]);
+        // console.log("relevantOptions = ", relevantOptions(responsivness));
+        // console.log([...IdEl.getElementsByClassName(trigger)][0]);
+        // console.log("sceneCircle = ", sceneCircle.state(), sceneCircle.triggerElement());
+        // sceneCircle.update();
+        // sceneCircle.refresh(true);
       });
     }
     else {
@@ -83,18 +107,27 @@ function InitAnimation({path2Wheel, placeID, duration, durationSize, triggerID, 
             triggerHook: 1
           })
             .addTo(controller)
-            .on("progress", progressCallback[i])  //rotate arrow
+            .on("progress", progressCallback[i]);  //rotate arrow
 
-        window.addEventListener("resize", function() {
-          // console.log("the orientation of the device is now " + screen.orientation.angle, " window zise = ", window.innerHeight, " x ", window.innerWidth);
-          arrowScene.duration( animDuration(duration) );
-          arrowScene.update(true);
-        });
+          window.addEventListener("resize", function() {
+            const { trigger, duration } =  relevantOptions(responsivness);
+
+            // console.log("the orientation of the device is now " + screen.orientation.angle, " window zise = ", window.innerHeight, " x ", window.innerWidth);
+            arrowScene.duration( animDuration(duration) );
+            arrowScene.triggerElement([...IdEl.getElementsByClassName(trigger)][0]);
+
+            console.log("relevantOptions = ", relevantOptions(responsivness));
+            console.log("arrowScene = ", arrowScene.duration(), arrowScene.triggerElement());
+
+            // arrowScene.triggerElement(document.getElementById(trigger));
+            // arrowScene.update(true);
+          });
         }
       );
     }
 
     function progress1Callback(event) {
+      // console.log("progressCallback", event.target.progress(), "  duration =", event.target.duration(), "  triggerElement =", event.target.triggerElement() );
       targetMiddle[0].style.opacity = event.progress;
       targetMiddleCircle.setAttribute("r", 90 * event.progress);
     }
